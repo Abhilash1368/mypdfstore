@@ -26,7 +26,6 @@ public class MypdfstoreApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 	myPdfMerger.mergeFiles(args);
-		
 	}
 
 }

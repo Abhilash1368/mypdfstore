@@ -1,0 +1,8 @@
+language: java
+before_install:
+  - chmod +x mvnw
+sudo: false
+cache:
+  directories:
+  - $HOME/.m2
+script: mvn clean install

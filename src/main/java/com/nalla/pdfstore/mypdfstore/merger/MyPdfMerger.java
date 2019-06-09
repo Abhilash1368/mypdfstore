@@ -8,24 +8,25 @@ import org.springframework.stereotype.Component;
 
 /**
  * author: Abhilash
- * 
- * 
+ *
  */
 @Component
 public class MyPdfMerger {
-	
-	
-	public void mergeFiles(String...filePaths) throws IOException {
+
+	/**
+	 * @param filesPath the files path
+	 * @throws IOException
+	 */
+	public void mergeFiles(final String...filesPath) throws IOException {
 		PDFMergerUtility pdfMerger = new PDFMergerUtility();
-		String homeDir = System.getProperty("user.home");
-		 pdfMerger.setDestinationFileName(homeDir+"/my_test_pdf.pdf");
-		for(String filePath:filePaths) {
-			  pdfMerger.addSource(new File(filePath));		      
+		for(String filePath:filesPath) {
+			final File source = new File(filePath);
+			if(source.exists()) {
+				pdfMerger.addSource(source);
+			}
 		}
+		pdfMerger.setDestinationFileName("target/generated-sources/my_test_pdf.pdf");
 		pdfMerger.mergeDocuments(null);
-		System.out.println("Files merged to "+pdfMerger.getDestinationFileName());
-		
 	}
-	
 
 }
